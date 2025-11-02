@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ATS Service | iPhone Model Analyzer+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-1:#0b0b0d;
+    --bg-2:#121018;
+    --card:#131219;
+    --muted:#9aaec0;
+    --accent1:#7b2cbf; /* بنفسجي */
+    --accent2:#3a2fa6; /* بنفسجي غامق */
+    --glow: rgba(123,44,191,0.18);
+    --success:#8ef7d3;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    color:#eef6fb; display:flex; align-items:center; justify-content:center; padding:28px;
+  }
+
+  .card{
+    width:100%; max-width:920px; border-radius:14px; padding:22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.012));
+    border:1px solid rgba(255,255,255,0.03); box-shadow: 0 10px 40px rgba(10,8,18,0.6);
+    overflow:hidden;
+  }
+
+  header{display:flex; align-items:center; gap:16px; margin-bottom:14px;}
+  .logo{
+    width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg,var(--accent2),var(--accent1));
+    box-shadow: 0 8px 30px var(--glow), inset 0 -6px 18px rgba(0,0,0,0.25);
+    font-weight:800; color:#fff; font-size:18px;
+  }
+  .title{flex:1}
+  .title h1{margin:0; font-size:20px; letter-spacing:0.2px}
+  .title p{margin:4px 0 0 0; color:var(--muted); font-size:13px}
+
+  .main{
+    display:grid; grid-template-columns: 1fr 380px; gap:18px;
+  }
+
+  /* left (input + explanation) */
+  .left{padding:12px}
+  .panel{background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006)); border-radius:12px; padding:14px; border:1px solid rgba(255,255,255,0.02)}
+  .hint{color:var(--muted); font-size:13px; margin-bottom:10px}
+  .input-wrap{display:flex; gap:10px; align-items:center}
+  input[type="text"]{
+    flex:1; padding:14px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.015); color:#eef6fb; font-size:15px; direction:ltr;
+  }
+  .btn{
+    background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:#fff; padding:12px 14px;
+    border-radius:10px; border:0; font-weight:700; cursor:pointer; box-shadow: 0 6px 26px rgba(59,47,166,0.18);
+  }
+  .btn.secondary{background:transparent; border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:10px}
+
+  .small{font-size:13px; color:var(--muted)}
+
+  /* right (result) */
+  .right{padding:12px}
+  .result-box{min-height:220px; border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px;
+            background: linear-gradient(180deg, rgba(123,44,191,0.03), rgba(58,47,166,0.02)); border:1px solid rgba(255,255,255,0.02)}
+  .badge{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.02); color:var(--muted); font-weight:700}
+  .result-title{font-size:15px; margin:0}
+  .result-main{font-size:16px; color:#eaf9f3; font-weight:700; margin-top:6px}
+  .meta{color:var(--muted); font-size:13px}
+  .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+
+  .share-row{display:flex; gap:8px; align-items:center; margin-top:auto}
+  .share-btn{flex:1; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.03); color:#fff; padding:10px; border-radius:10px; cursor:pointer}
+  .copy{background:transparent; border:1px dashed rgba(255,255,255,0.04); padding:8px 10px; border-radius:8px; color:var(--muted)}
+
+  footer{margin-top:18px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap}
+  .brand{color:var(--muted); font-size:13px}
+  .contact{display:flex; gap:8px; align-items:center}
+  .tiktok{background:#111; color:#fff; padding:8px 10px; border-radius:10px; text-decoration:none; font-weight:700}
+  .phone{background:rgba(255,255,255,0.02); padding:8px 12px; border-radius:10px; color:var(--muted); font-weight:700}
+
+  /* animations */
+  .fade-in{animation: fadeIn .45s ease both}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(8px)}to{opacity:1; transform:none}}
+  @media(max-width:900px){
+    .main{grid-template-columns:1fr; }
+    .right{order:-1}
+  }
+</style>
+</head>
+<body>
+  <div class="card fade-in" role="main" aria-live="polite">
+    <header>
+      <div class="logo">ATS</div>
+      <div class="title">
+        <h1>ATS Service | iPhone Model Analyzer+</h1>
+        <p>Made in DZ • واجهة Premium • تحليل مفصّل للأكواد</p>
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="left">
+        <div class="panel">
+          <div class="hint">أدخل رقم الطراز (مثال: <code>MQ9Q3ZD/A</code>) ثم اضغط <strong>حلّل</strong></div>
+          <div class="input-wrap">
+            <input id="modelInput" type="text" placeholder="أدخل رقم الطراز هنا (مثال: MLED3LL/A)" aria-label="Model number" />
+            <button class="btn" id="analyzeBtn">حلّل</button>
+          </div>
+
+          <div style="display:flex; gap:8px; margin-top:10px;">
+            <button class="btn secondary" id="detailsBtn">تفاصيل أكثر</button>
+            <button class="btn secondary" id="examplesBtn">أمثلة</button>
+          </div>
+
+          <div style="margin-top:12px" class="small">
+            قاعدة قابلة للتعديل: <strong>models.json</strong> — حرّكها من GitHub كلّ وقت.
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="result-box" id="resultBox">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div class="badge" id="badgeState">جاهز للتحليل</div>
+              <div class="result-title">نتيجة التحليل</div>
+            </div>
+            <div class="meta" id="metaTime">ATS Service • Premium</div>
+          </div>
+
+          <div class="result-main" id="resultMain">أدخل رقم الطراز واضغط "حلّل".</div>
+          <div class="meta" id="resultSub">المعلومات ستظهر هنا بشكل واضح ومضغوط.</div>
+
+          <div class="chips" id="chipsArea"></div>
+
+          <div class="share-row">
+            <button class="share-btn" id="shareBtn">شارِك التحليل</button>
+            <button class="copy" id="copyBtn">نسخ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="brand">ATS Service © 2025 • Made in DZ</div>
+      <div class="contact">
+        <a class="tiktok" target="_blank" href="https://www.tiktok.com/@ats_mobile1">تابعني على TikTok</a>
+        <div class="phone">📞 0556989642</div>
+      </div>
+    </footer>
+  </div>
+
+<script>
+/*
+  ATS Premium analyzer:
+  - يحمّل ملف models.json من نفس المسار
+  - يطابق أطول مفتاح (longest-prefix) داخل الكود لتحليل الموديل
+  - يقرأ suffix للكود (مثل LL/A, ZA/A, VC/A) لتحديد المنطقة
+*/
+
+let models = null;
+let regions = null;
+
+// تحميل JSON (models.json) عند بدء التشغيل
+fetch('models.json')
+  .then(r => r.ok ? r.json() : Promise.reject('models.json not found'))
+  .then(data => {
+    models = data.models || {};
+    regions = data.regions || {};
+    document.getElementById('badgeState').innerText = 'قاعدة جاهزة ✅';
+  })
+  .catch(err => {
+    console.warn(err);
+    document.getElementById('badgeState').innerText = 'قاعدة غير محمّلة — أضف models.json';
+  });
+
+// دالة لاستخراج أطول مفتاح مطابق من المقدمة
+function findBestModelKey(prefix) {
+  if (!models) return null;
+  // نبحث عن أطول مفتاح يطابق بداية prefix
+  let best = null;
+  for (const key of Object.keys(models)) {
+    if (prefix.startsWith(key) && (!best || key.length > best.length)) best = key;
+  }
+  return best;
+}
+
+function analyze(codeRaw) {
+  const out = {
+    input: codeRaw,
+    normalized: codeRaw ? codeRaw.trim().toUpperCase() : '',
+    first: '',
+    firstMeaning: '',
+    modelGuess: null,
+    regionCode: '',
+    regionMeaning: '',
+    retail: ''
+  };
+  if (!out.normalized) return out;
+
+  let code = out.normalized;
+  if (code.startsWith('@')) code = code.slice(1); // handle TikTok handles
+
+  // extract region suffix (try last 4, then 3)
+  const last4 = code.slice(-4);
+  const last3 = code.slice(-3);
+  let regionKey = '';
+  if (regions && regions[last4]) regionKey = last4;
+  else if (regions && regions[last3]) regionKey = last3;
+  else regionKey = last4; // fallback show last4
+
+  out.regionCode = regionKey;
+  out.regionMeaning = (regions && regions[regionKey]) ? regions[regionKey] : 'منطقة غير محددة';
+
+  // first char
+  const prefixNoSlash = code.replace(/\//g, '');
+  out.first = prefixNoSlash.charAt(0) || '';
+  switch(out.first){
+    case 'M': out.firstMeaning = 'جديد من المصنع (Brand New)'; break;
+    case 'F': out.firstMeaning = 'مجدّد رسمي (Refurbished by Apple)'; break;
+    case 'N': out.firstMeaning = 'مستبدل من آبل (Replacement)'; break;
+    case 'P': out.firstMeaning = 'شخصي / محفور (Personalized)'; break;
+    case 'A': out.firstMeaning = 'نسخة عرض (Demo Unit)'; break;
+    default: out.firstMeaning = 'غير معروف (حرف أول غير مألوف)'; break;
+  }
+
+  // model guess: use the prefix (first 6 chars without slash) and find best matching key
+  const lookupPrefix = prefixNoSlash.slice(0,6);
+  const bestKey = findBestModelKey(lookupPrefix);
+  if (bestKey) {
+    out.modelGuess = models[bestKey];
+  } else {
+    // heuristic fallback: look at letters patterns
+    if (lookupPrefix.startsWith('MQ')) out.modelGuess = 'iPhone family (MQ-series) — جيل حديث';
+    else if (lookupPrefix.startsWith('ML') || lookupPrefix.startsWith('MLE')) out.modelGuess = 'iPhone family (ML/MLE series) — 12/13/14';
+    else out.modelGuess = 'غير متوفر تطابق مباشر؛ قم بتحديث models.json';
+  }
+
+  // retail hint
+  const afterSlash = code.split('/')[1] || '';
+  out.retail = (afterSlash === 'A') ? 'نسخة للبيع بالتجزئة (Retail)' : `نوع مذكور: /${afterSlash || '-'} (تحقق)`;
+
+  return out;
+}
+
+// UI binding
+document.getElementById('analyzeBtn').addEventListener('click', runAnalyze);
+document.getElementById('modelInput').addEventListener('keydown', (e)=>{ if(e.key==='Enter') runAnalyze(); });
+document.getElementById('copyBtn').addEventListener('click', ()=>{
+  const text = document.getElementById('resultMain').innerText + '\n' + document.getElementById('resultSub').innerText;
+  navigator.clipboard.writeText(text).then(()=>alert('تم نسخ النتيجة'));
+});
+document.getElementById('shareBtn').addEventListener('click', ()=>{
+  const txt = `${document.getElementById('resultMain').innerText}\n${document.getElementById('resultSub').innerText}\n— ATS Service`;
+  if (navigator.share) {
+    navigator.share({title:'تحليل طراز آيفون', text:txt}).catch(()=>alert('مشاركة غير متاحة'));
+  } else {
+    navigator.clipboard.writeText(txt).then(()=>alert('تم نسخ نص المشاركة'));
+  }
+});
+
+// show examples
+document.getElementById('examplesBtn').addEventListener('click', ()=>{
+  const sample = ['MLED3LL/A','MQ9Q3ZD/A','MTU93VC/A','MGC43ZA/A','MQCK2LL/A'];
+  document.getElementById('modelInput').value = sample[Math.floor(Math.random()*sample.length)];
+  runAnalyze();
+});
+document.getElementById('detailsBtn').addEventListener('click', ()=>{
+  alert('تفاصيل: يُستخدم models.json لتحديد الموديل (قابلة للتعديل من GitHub). يمكنك تحديث models.json لإضافة دعم أكواد جديدة.');
+});
+
+function runAnalyze(){
+  const val = document.getElementById('modelInput').value;
+  const res = analyze(val);
+  renderResult(res);
+}
+
+function renderResult(r){
+  document.getElementById('resultMain').innerText = `${r.modelGuess || '-'} — ${r.firstMeaning}`;
+  document.getElementById('resultSub').innerText = `${r.regionMeaning} • ${r.retail}`;
+  document.getElementById('chipsArea').innerHTML = `
+    <div class="badge"> طراز: ${escapeHtml(r.modelGuess || '-')}</div>
+    <div class="badge"> الحالة: ${escapeHtml(r.firstMeaning)}</div>
+    <div class="badge"> المنطقة: ${escapeHtml(r.regionCode)}</div>
+  `;
+  document.getElementById('metaTime').innerText = 'تحليل فوري • ATS Service';
+}
+
+// small esc
+function escapeHtml(s){ return (s+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</body>
+</html>

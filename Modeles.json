@@ -1,0 +1,24 @@
+{
+  "models": {
+    "MTU93": "iPhone 15 Pro – 128GB – Natural Titanium",
+    "MQ9Q3": "iPhone 15 Pro – 128GB – Natural Titanium",
+    "MLED3": "iPhone 13 Pro Max – 512GB – Sierra Blue",
+    "MLEJ3": "iPhone 13 Pro Max – 256GB – Graphite",
+    "MQCK2": "iPhone X – 256GB – Silver",
+    "MGC43": "iPhone 12 – 128GB – (Color varies)",
+    "MWM62": "iPhone 11 Pro – 64GB – Space Gray",
+    "MLE": "iPhone 13 Pro Max (family)",
+    "MQ": "iPhone (MQ-series modern family)",
+    "ML": "iPhone (ML-series)"
+  },
+  "regions": {
+    "LL/A": "🇺🇸 نسخة موجهة للسوق الأمريكي",
+    "VC/A": "🇻🇳 نسخة فيتنامية",
+    "ZA/A": "🇭🇰 نسخة هونغ كونغ / سنغافورة (Dual SIM physical)",
+    "ZD/A": "🇩🇪 نسخة ألمانية / أوروبية",
+    "AE/A": "🇦🇪 نسخة الإمارات",
+    "CH/A": "🇨🇳 نسخة الصين",
+    "B/A": "🇬🇧 نسخة بريطانيا",
+    "EU/A": "🇪🇺 نسخة أوروبا عامة"
+  }
+}

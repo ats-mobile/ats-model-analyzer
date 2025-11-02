@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATS Service | iPhone Model Analyzer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", "Cairo", sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+    header {
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #00bcd4;
+      margin: 0;
+    }
+    .input-section {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00bcd4;
+      width: 90%;
+      max-width: 400px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      text-align: center;
+      background: #262626;
+      color: #fff;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #00bcd4;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0097a7;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #ccc;
+      white-space: pre-line;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+    a {
+      color: #00bcd4;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ATS Service | iPhone Model Analyzer</h1>
+    <p>حلّل رقم الطراز وتعرف على تفاصيل جهازك 🔍</p>
+  </header>
+
+  <div class="input-section">
+    <label for="model">أدخل رقم الطراز:</label>
+    <input id="model" type="text" placeholder="مثال: MGC43ZA/A" />
+    <button onclick="analyzeModel()">حلّل</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <footer>
+    <p>تابعني على تيك توك: <a href="https://www.tiktok.com/@ats_mobile1" target="_blank">@ats_mobile1</a></p>
+    <p>📞 0556989543</p>
+    <p>ATS Service © 2025</p>
+  </footer>
+
+  <script>
+    function analyzeModel() {
+      const input = document.getElementById("model").value.trim().toUpperCase();
+      const resultDiv = document.getElementById("result");
+
+      if (!input) {
+        resultDiv.innerText = "⚠️ من فضلك أدخل رقم الطراز أولاً.";
+        return;
+      }
+
+      let firstLetter = input[0];
+      let type = "";
+      if (firstLetter === "M") type = "هاتف جديد من المصنع (Brand New)";
+      else if (firstLetter === "F") type = "هاتف مجدد من Apple (Refurbished)";
+      else if (firstLetter === "N") type = "هاتف مستبدل من Apple (Replacement)";
+      else if (firstLetter === "A") type = "هاتف عرض (Demo Unit)";
+      else type = "رمز غير معروف، يرجى التحقق مجددًا.";
+
+      let region = "";
+      if (input.includes("LL/A")) region = "🇺🇸 نسخة موجهة للسوق الأمريكي";
+      else if (input.includes("ZA/A")) region = "🇸🇬 نسخة سنغافورية أو آسيوية";
+      else if (input.includes("ZD/A")) region = "🇩🇪 نسخة ألمانية أو أوروبية";
+      else if (input.includes("VC/A")) region = "🇻🇳 نسخة فيتنامية";
+      else if (input.includes("B/A")) region = "🇬🇧 نسخة بريطانية";
+      else region = "🌍 منطقة غير محددة بدقة";
+
+      resultDiv.innerText = `🔹 النوع: ${type}\n🔹 المنطقة: ${region}\n\n📱 تحليل: ${input}`;
+    }
+  </script>
+</body>
+</html>
